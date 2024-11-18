@@ -22,7 +22,7 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField] AudioSource jumpSound;
 
-    private Animator animator;
+    public Animator anim;
 
 
 
@@ -30,6 +30,7 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -50,7 +51,9 @@ public class PlayerMovement : MonoBehaviour
             Vector3 moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
             controller.Move(moveDir.normalized * movementSpeed * Time.deltaTime);
         }
-        
+
+        anim.SetFloat("isMoving", direction.magnitude);
+
 
         if (Input.GetButtonDown("Jump") && IsGrounded())
         {
