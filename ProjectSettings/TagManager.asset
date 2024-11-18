@@ -8,6 +8,7 @@ TagManager:
   - Enemy Head
   - Coin
   - DeathZone
+  - ToLevel1
   layers:
   - Default
   - TransparentFX

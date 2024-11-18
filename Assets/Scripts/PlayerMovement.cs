@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -20,6 +21,10 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] LayerMask ground;
 
     [SerializeField] AudioSource jumpSound;
+
+    private Animator animator;
+
+
 
     // Start is called before the first frame update
     void Start()
@@ -69,8 +74,17 @@ public class PlayerMovement : MonoBehaviour
             Destroy(collision.transform.parent.gameObject);
             Jump();
         }
+
+        if (collision.gameObject.CompareTag("ToLevel1"))
+        {
+            LoadScene1();
+        }
     }
 
+    void LoadScene1()
+    {
+        SceneManager.LoadScene("Level_1");
+    }
     bool IsGrounded()
     {
         return Physics.CheckSphere(groundCheck.position, .1f, ground);
