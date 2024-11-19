@@ -52,6 +52,7 @@ public class PlayerMovement : MonoBehaviour
             controller.Move(moveDir.normalized * movementSpeed * Time.deltaTime);
         }
 
+        Debug.Log(direction.magnitude);
         anim.SetFloat("isMoving", direction.magnitude);
 
 
