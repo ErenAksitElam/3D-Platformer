@@ -24,6 +24,8 @@ public class PlayerMovement : MonoBehaviour
 
     public Animator anim;
 
+    [SerializeField] float chainJump = 1f;
+
 
 
     // Start is called before the first frame update
@@ -59,16 +61,23 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetButtonDown("Jump") && IsGrounded())
         {
             Jump();
+
         }
 
         velocityY += gravity * Time.deltaTime;
         controller.Move(new Vector3(0f, velocityY, 0f) * Time.deltaTime);
+
+        if (IsGrounded())
+        {
+            StartCoroutine(WaitAndPrint());
+        }
     }
 
     void Jump()
     {
-        velocityY = Mathf.Sqrt(jumpForce * -2f * gravity);
+        velocityY = Mathf.Sqrt(jumpForce * -2f * gravity * chainJump);
         jumpSound.Play();
+        chainJump += 1f;
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -92,5 +101,19 @@ public class PlayerMovement : MonoBehaviour
     bool IsGrounded()
     {
         return Physics.CheckSphere(groundCheck.position, .1f, ground);
+    }
+
+    IEnumerator WaitAndPrint()
+    {
+
+        yield return new WaitForSeconds(3);
+
+        if (IsGrounded())
+        {
+
+            Debug.Log("chainJump defaulted");
+
+            chainJump = 1;
+        }
     }
 }
