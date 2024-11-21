@@ -77,7 +77,11 @@ public class PlayerMovement : MonoBehaviour
     {
         velocityY = Mathf.Sqrt(jumpForce * -2f * gravity * chainJump);
         jumpSound.Play();
-        chainJump += 1f;
+        if (chainJump >= 5f)
+        {
+            chainJump = 1f;
+        }
+        chainJump += 2f;
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -100,20 +104,20 @@ public class PlayerMovement : MonoBehaviour
     }
     bool IsGrounded()
     {
-        return Physics.CheckSphere(groundCheck.position, .1f, ground);
+        return Physics.CheckSphere(groundCheck.position, .2f, ground);
     }
 
     IEnumerator WaitAndPrint()
     {
 
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(2);
 
         if (IsGrounded())
         {
 
             Debug.Log("chainJump defaulted");
 
-            chainJump = 1;
+            chainJump = 1f;
         }
     }
 }
