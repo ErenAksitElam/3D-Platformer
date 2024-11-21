@@ -54,8 +54,16 @@ public class PlayerMovement : MonoBehaviour
             controller.Move(moveDir.normalized * movementSpeed * Time.deltaTime);
         }
 
-        Debug.Log(direction.magnitude);
-        anim.SetFloat("isMoving", direction.magnitude);
+        //anim.SetFloat("isMoving", direction.magnitude);
+
+        if (direction.magnitude == 1)
+        {
+            anim.SetFloat("isMoving", 1);
+        }
+        else if (direction.magnitude == 0)
+        {
+            anim.SetFloat("isMoving", 0);
+        }
 
 
         if (Input.GetButtonDown("Jump") && IsGrounded())
@@ -104,7 +112,7 @@ public class PlayerMovement : MonoBehaviour
     }
     bool IsGrounded()
     {
-        return Physics.CheckSphere(groundCheck.position, .2f, ground);
+        return Physics.CheckSphere(groundCheck.position, .3f, ground);
     }
 
     IEnumerator WaitAndPrint()
@@ -114,9 +122,6 @@ public class PlayerMovement : MonoBehaviour
 
         if (IsGrounded())
         {
-
-            Debug.Log("chainJump defaulted");
-
             chainJump = 1f;
         }
     }
