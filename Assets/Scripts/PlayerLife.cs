@@ -14,7 +14,6 @@ public class PlayerLife : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Enemy Body"))
         {
-            GetComponent<MeshRenderer>().enabled = false;
             GetComponent<Rigidbody>().isKinematic = true;
             GetComponent<PlayerMovement>().enabled = false;
             Die();
@@ -31,7 +30,7 @@ public class PlayerLife : MonoBehaviour
 
     void Die()
     {
-        Invoke(nameof(ReloadLevel), 1.3f);
+        Invoke(nameof(ReloadLevel), 0.3f);
         dead = true;
         deathSound.Play();
     }
