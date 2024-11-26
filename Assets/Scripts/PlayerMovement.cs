@@ -78,6 +78,11 @@ public class PlayerMovement : MonoBehaviour
         if (IsGrounded())
         {
             StartCoroutine(WaitAndPrint());
+            anim.SetBool("isGrounded", true);
+        }
+        if (!IsGrounded())
+        {
+            anim.SetBool("isGrounded", false);
         }
     }
 
