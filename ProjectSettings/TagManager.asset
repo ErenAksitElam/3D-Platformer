@@ -9,6 +9,7 @@ TagManager:
   - Coin
   - DeathZone
   - ToLevel1
+  - Gem
   layers:
   - Default
   - TransparentFX
@@ -18,7 +19,7 @@ TagManager:
   - UI
   - Ground
   - Environment
-  - 
+  - Post Process
   - 
   - 
   - 

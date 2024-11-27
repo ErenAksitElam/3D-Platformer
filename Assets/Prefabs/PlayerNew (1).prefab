@@ -659,6 +659,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coinsText: {fileID: 0}
+  gemText: {fileID: 0}
   collectionSound: {fileID: 5763910535154690358}
 --- !u!4 &4326380936423122365 stripped
 Transform:

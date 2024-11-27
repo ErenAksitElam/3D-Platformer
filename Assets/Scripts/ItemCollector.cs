@@ -6,8 +6,10 @@ using UnityEngine.UI;
 public class ItemCollector : MonoBehaviour
 {
     int coins = 0;
+    int gems = 0;
 
     [SerializeField] Text coinsText;
+    [SerializeField] Text gemText;
 
     [SerializeField] AudioSource collectionSound;
 
@@ -18,6 +20,14 @@ public class ItemCollector : MonoBehaviour
             Destroy(other.gameObject);
             coins++;
             coinsText.text = "Coins: " + coins;
+            collectionSound.Play();
+        }
+
+        if (other.gameObject.CompareTag("Gem"))
+        {
+            Destroy(other.gameObject);
+            gems++;
+            coinsText.text = "Gems: " + gems;
             collectionSound.Play();
         }
     }
