@@ -61,6 +61,8 @@ public class PlayerMovement : MonoBehaviour
         if (direction.magnitude == 1)
         {
             anim.SetFloat("isMoving", 1);
+            CreateDust();
+            
         }
         else if (direction.magnitude == 0)
         {
@@ -91,7 +93,6 @@ public class PlayerMovement : MonoBehaviour
     void Jump()
     {
         velocityY = Mathf.Sqrt(jumpForce * -2f * gravity * chainJump);
-        CreateDust();
         jumpSound.Play();
         if (chainJump >= 5f)
         {
