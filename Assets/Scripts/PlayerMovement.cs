@@ -26,6 +26,8 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField] float chainJump = 1f;
 
+    public ParticleSystem dust;
+
 
 
     // Start is called before the first frame update
@@ -89,6 +91,7 @@ public class PlayerMovement : MonoBehaviour
     void Jump()
     {
         velocityY = Mathf.Sqrt(jumpForce * -2f * gravity * chainJump);
+        CreateDust();
         jumpSound.Play();
         if (chainJump >= 5f)
         {
@@ -129,5 +132,10 @@ public class PlayerMovement : MonoBehaviour
         {
             chainJump = 1f;
         }
+    }
+
+    void CreateDust()
+    {
+        dust.Play();
     }
 }
